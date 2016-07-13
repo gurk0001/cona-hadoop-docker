@@ -38,3 +38,12 @@ services:
     environment:
       ZOOKEEPER_QUORUM: zookeeper:2181
       HBASE_URL: hbase:9090
+  node:
+    build: ./node
+    ports:
+      - "3000:3000"
+    depends_on:
+       - hbase
+    environment:
+      PORT: 3000
+      ZOOKEEPER_QUORUM: zookeeper:2181
