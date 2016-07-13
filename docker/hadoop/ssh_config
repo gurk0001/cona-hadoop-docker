@@ -1,0 +1,3 @@
+
+StrictHostKeyChecking no # Skip the "the authenticity of host ..." prompt
+Port 2122 # Don't use 22. It conflicts with ssh outside of docker.

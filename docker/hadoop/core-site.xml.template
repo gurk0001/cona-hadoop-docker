@@ -1,0 +1,11 @@
+<configuration>
+   <property> 
+      <name>fs.default.name</name> 
+      <value>hdfs://HADOOP_NAMENODE_HOSTNAME:HADOOP_NAMENODE_PORT/</value>
+      <description>A uri pointing to the host & port of the name node.</description>
+   </property> 
+   <property> 
+      <name>dfs.permissions</name> 
+      <value>false</value> 
+   </property> 
+</configuration>
