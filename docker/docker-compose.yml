@@ -46,4 +46,4 @@ services:
        - hbase
     environment:
       PORT: 3000
-      ZOOKEEPER_QUORUM: zookeeper:2181
+      ZOOKEEPER_HOSTNAME: zookeeper
