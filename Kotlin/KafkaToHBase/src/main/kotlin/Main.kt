@@ -47,4 +47,3 @@ object Main {
         }
     }
 }
-
