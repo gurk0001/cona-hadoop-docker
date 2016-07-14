@@ -52,7 +52,7 @@ fabric.properties
 
 # *.iml
 # modules.xml
-# .idea/misc.xml 
+# .idea/misc.xml
 # *.ipr
 
 
@@ -73,3 +73,6 @@ npm-debug.log
 
 ### Bower ###
 bower_components
+
+### jar files ##
+*.jar
