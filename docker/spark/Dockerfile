@@ -9,11 +9,11 @@ RUN apk --update add wget tar procps ncurses && \
 	# The spark-jars directory will contain jars that spark should run.
 	mkdir /spark-jars
 
-COPY runspark.sh /opt/spark
+COPY runspark.sh /opt/spark/runspark.sh
 
 RUN ln -s /opt/spark/runspark.sh /usr/local/bin/runspark && \
 	chmod +x /opt/spark/runspark.sh
 
 ENV SPARK_HOME=/opt/spark
 
-CMD ["runspark"]
+ENTRYPOINT ["/bin/bash", "runspark"]
