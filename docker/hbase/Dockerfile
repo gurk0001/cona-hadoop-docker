@@ -15,4 +15,4 @@ COPY bootstrap-hbase.sh $HBASE_HOME/bootstrap-hbase.sh
 RUN chmod +x $HBASE_HOME/bootstrap-hbase.sh && \
 	ln -s $HBASE_HOME/bootstrap-hbase.sh /usr/local/bin/bootstrap-hbase
 
-ENTRYPOINT ["bootstrap-hbase"]
+ENTRYPOINT ["bash" "/bootstrap-hbase.sh"]

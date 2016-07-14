@@ -16,4 +16,4 @@ RUN ln -s /opt/spark/runspark.sh /usr/local/bin/runspark && \
 
 ENV SPARK_HOME=/opt/spark
 
-CMD ["runspark"]
+CMD ["bash", "runspark"]
