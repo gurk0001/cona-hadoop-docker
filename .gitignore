@@ -52,7 +52,7 @@ fabric.properties
 
 # *.iml
 # modules.xml
-# .idea/misc.xml 
+# .idea/misc.xml
 # *.ipr
 
 
@@ -66,3 +66,12 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+.idea/
+Kotlin/KafkaToHBase/src/main/java/
+Kotlin/KafkaToHBase/src/main/resources/
+Kotlin/KafkaToHBase/src/test/
+Kotlin/twitter/kafka-producer/src/main/resources/
+Kotlin/twitter/kafka-producer/src/test/
+Kotlin/twitter/twitter-common/src/main/resources/
+Kotlin/twitter/twitter-common/src/test/
+docker/ubuntu-java/
