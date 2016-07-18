@@ -12,6 +12,7 @@
     <modules>
         <module>twitter-common</module>
         <module>kafka-producer</module>
+        <module>spark-consumer</module>
     </modules>
 
     <properties>
