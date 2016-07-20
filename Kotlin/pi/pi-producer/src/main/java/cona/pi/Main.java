@@ -1,0 +1,1 @@
+package cona.pi;/* A basic Kafka cona.pi.Producer that reads sensor data and sends to* Kafka Broker*/public class Main {    public static void main(String[] args) {        Producer producer1 = new Producer("sensor-event-button", "192.168.18.95:9092", "sensor-button-1", true);        producer1.start();    }}
