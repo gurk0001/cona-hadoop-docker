@@ -1,1 +1,21 @@
-package cona.pi;/* A basic Kafka cona.pi.Producer that reads sensor data and sends to* Kafka Broker*/public class Main {    public static void main(String[] args) {        Producer producer1 = new Producer("sensor-event-button", "192.168.18.95:9092", "sensor-button-1", true);        producer1.start();    }}
+package cona.pi;
+
+import java.io.IOException;
+import java.util.Properties;
+
+/* A basic Kafka cona.pi.Producer that reads sensor data and sends to
+* Kafka Broker*/
+public class Main {
+    static Properties props;
+
+    public static void main(String[] args) throws IOException {
+        readProps();
+        Producer producer1 = new Producer(props.getProperty("topic"),props.getProperty("ip"),props.getProperty("sensorID"), true);
+        producer1.start();
+    }
+
+    public static void readProps() throws java.io.IOException {
+        props = new Properties();
+        props.load(Main.class.getClassLoader().getResourceAsStream("config.properties"));
+    }
+}
