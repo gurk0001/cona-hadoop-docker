@@ -10,8 +10,21 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         readProps();
-        Producer producer1 = new Producer(props.getProperty("topic"),props.getProperty("ip"),props.getProperty("sensorID"), true);
-        producer1.start();
+        Ping ping = new Ping(
+                props.getProperty("rangefinder-topic"),
+                props.getProperty("ip"),
+                props.getProperty("rangefinderSensorID"),
+                true,
+                props.getProperty("USBdevice"));
+
+        Button button = new Button(
+                props.getProperty("button-topic"),
+                props.getProperty("ip"),
+                props.getProperty("buttonSensorID"),
+                true);
+        ping.start();
+        button.start();
+
     }
 
     public static void readProps() throws java.io.IOException {

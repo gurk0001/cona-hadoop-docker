@@ -1,8 +1,5 @@
 package cona.pi;
 
-import com.pi4j.io.gpio.*;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -11,13 +8,11 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
-public class Producer extends Thread {
+public abstract class Producer extends Thread {
     private final KafkaProducer<String, String> producer;
     private final String topic;
     private final Boolean isAsync;
     private final String clientID;
-    private static final int STATE_ON = 1;
-    private static final int STATE_OFF = 0;
 
     public Producer(String topic, String bootstrapServer, String clientID, Boolean isAsync) {
         Properties props = new Properties();
@@ -31,47 +26,18 @@ public class Producer extends Thread {
         this.isAsync = isAsync;
     }
 
-    public void run() {
-        final GpioController gpio = GpioFactory.getInstance();
-        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
-        myButton.addListener(new GpioPinListenerDigital() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                // display pin state on console
-                sendMessage(event.getState());
-                System.out.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = " + event.getState());
-            }
-        });
-        // Initialize in "closed" state
-        sendMessage(PinState.LOW);
-        for (;;) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                gpio.shutdown();
-            }
-        }
-
-    }
-    private void sendMessage(PinState state) {
-        int stateMsg;
-        if (state == PinState.HIGH) {
-            stateMsg = STATE_ON;
-        } else {
-            stateMsg = STATE_OFF;
-        }
+    public void sendMessage(String message) {
         long startTime = System.currentTimeMillis();
-        String messageStr = this.clientID + "," + startTime + "," + stateMsg;
+        String messageStr = this.clientID + "," + startTime + "," + message;
         if (isAsync) { // Send asynchronously
             producer.send(new ProducerRecord<>(topic,
                     clientID,
-                    messageStr), new DemoCallBack(startTime, clientID, messageStr));
+                    message), new DemoCallBack(startTime, clientID, messageStr));
         } else { // Send synchronously
             try {
                 producer.send(new ProducerRecord<>(topic,
                         clientID,
-                        messageStr)).get();
+                        message)).get();
                 System.out.println("Sent message: (" + clientID + ", " + messageStr + ")");
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
