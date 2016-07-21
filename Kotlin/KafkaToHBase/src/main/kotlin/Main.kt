@@ -36,7 +36,7 @@ object Main {
                             val rowKey = "${it.id}_${it.timestamp}".toByteArray()
                             val put = Put(rowKey)
                             put.addColumn("state-column-family".toByteArray(), "state".toByteArray(), Bytes.toBytes(it.state))
-                            Tuple2(ImmutableBytesWritable(rowKey), put)
+                            return@mapToPair Tuple2(ImmutableBytesWritable(rowKey), put)
                         }.foreachRDD(fun(javaPairRDD: JavaPairRDD<ImmutableBytesWritable, Put>, time: Time): Unit {
                     javaPairRDD.saveAsNewAPIHadoopDataset(jobConf)
                 })
@@ -47,4 +47,3 @@ object Main {
         }
     }
 }
-
