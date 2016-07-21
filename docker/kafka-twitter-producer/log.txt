@@ -1,0 +1,174 @@
+[2016-07-15 17:34:43,375] INFO StandaloneConfig values: 
+	cluster = connect
+	rest.advertised.host.name = null
+	task.shutdown.graceful.timeout.ms = 5000
+	rest.host.name = null
+	rest.advertised.port = null
+	bootstrap.servers = [kafka:9092]
+	offset.flush.timeout.ms = 5000
+	offset.flush.interval.ms = 5000
+	rest.port = 8083
+	internal.key.converter = class org.apache.kafka.connect.json.JsonConverter
+	access.control.allow.methods = 
+	access.control.allow.origin = 
+	offset.storage.file.filename = /tmp/connect.offsets
+	internal.value.converter = class org.apache.kafka.connect.json.JsonConverter
+	value.converter = class org.apache.kafka.connect.storage.StringConverter
+	key.converter = class org.apache.kafka.connect.storage.StringConverter
+ (org.apache.kafka.connect.runtime.standalone.StandaloneConfig:178)
+[2016-07-15 17:34:43,506] INFO Logging initialized @384ms (org.eclipse.jetty.util.log:186)
+[2016-07-15 17:34:43,692] INFO Kafka Connect starting (org.apache.kafka.connect.runtime.Connect:52)
+[2016-07-15 17:34:43,692] INFO Herder starting (org.apache.kafka.connect.runtime.standalone.StandaloneHerder:71)
+[2016-07-15 17:34:43,693] INFO Worker starting (org.apache.kafka.connect.runtime.Worker:102)
+[2016-07-15 17:34:43,700] INFO ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [kafka:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 9223372036854775807
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 2147483647
+	acks = all
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 2147483647
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 1
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 0
+ (org.apache.kafka.clients.producer.ProducerConfig:178)
+[2016-07-15 17:34:43,728] INFO ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [kafka:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 9223372036854775807
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = producer-1
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 2147483647
+	acks = all
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 2147483647
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 1
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 0
+ (org.apache.kafka.clients.producer.ProducerConfig:178)
+[2016-07-15 17:34:43,730] INFO Kafka version : 0.10.0.0 (org.apache.kafka.common.utils.AppInfoParser:83)
+[2016-07-15 17:34:43,730] INFO Kafka commitId : b8642491e78c5a13 (org.apache.kafka.common.utils.AppInfoParser:84)
+[2016-07-15 17:34:43,731] INFO Starting FileOffsetBackingStore with file /tmp/connect.offsets (org.apache.kafka.connect.storage.FileOffsetBackingStore:60)
+[2016-07-15 17:34:43,778] INFO Worker started (org.apache.kafka.connect.runtime.Worker:124)
+[2016-07-15 17:34:43,778] INFO Herder started (org.apache.kafka.connect.runtime.standalone.StandaloneHerder:73)
+[2016-07-15 17:34:43,778] INFO Starting REST server (org.apache.kafka.connect.runtime.rest.RestServer:98)
+[2016-07-15 17:34:43,862] INFO jetty-9.2.15.v20160210 (org.eclipse.jetty.server.Server:327)
+[2016-07-15 17:34:44,649] INFO Started o.e.j.s.ServletContextHandler@5733f295{/,null,AVAILABLE} (org.eclipse.jetty.server.handler.ContextHandler:744)
+[2016-07-15 17:34:44,665] INFO Started ServerConnector@5d1659ea{HTTP/1.1}{0.0.0.0:8083} (org.eclipse.jetty.server.ServerConnector:266)
+[2016-07-15 17:34:44,675] INFO Started @1556ms (org.eclipse.jetty.server.Server:379)
+[2016-07-15 17:34:44,676] INFO REST server listening at http://172.20.0.4:8083/, advertising URL http://172.20.0.4:8083/ (org.apache.kafka.connect.runtime.rest.RestServer:150)
+[2016-07-15 17:34:44,676] INFO Kafka Connect started (org.apache.kafka.connect.runtime.Connect:58)
+[2016-07-15 17:34:44,678] INFO ConnectorConfig values: 
+	connector.class = cona.twitter.stream.connect.TwitterStreamRawConnector
+	tasks.max = 1
+	name = coke-twitter-producer
+ (org.apache.kafka.connect.runtime.ConnectorConfig:178)
+[2016-07-15 17:34:45,656] INFO Reflections took 1844 ms to scan 61 urls, producing 2877 keys and 21652 values  (org.reflections.Reflections:229)
+[2016-07-15 17:34:46,096] INFO Reflections took 1400 ms to scan 61 urls, producing 2877 keys and 21652 values  (org.reflections.Reflections:229)
+[2016-07-15 17:34:46,096] ERROR Failed to create job for twitter-connect-source.properties (org.apache.kafka.connect.cli.ConnectStandalone:89)
+[2016-07-15 17:34:46,097] ERROR Stopping after connector error (org.apache.kafka.connect.cli.ConnectStandalone:100)
+java.util.concurrent.ExecutionException: org.apache.kafka.connect.errors.ConnectException: Failed to find any class that implements Connector and which name matches cona.twitter.stream.connect.TwitterStreamRawConnector available connectors are: org.apache.kafka.connect.file.FileStreamSinkConnector, org.apache.kafka.connect.source.SourceConnector, org.apache.kafka.connect.sink.SinkConnector, org.apache.kafka.connect.file.FileStreamSourceConnector, org.apache.kafka.connect.tools.VerifiableSinkConnector, org.apache.kafka.connect.tools.VerifiableSourceConnector
+	at org.apache.kafka.connect.util.ConvertingFutureCallback.result(ConvertingFutureCallback.java:80)
+	at org.apache.kafka.connect.util.ConvertingFutureCallback.get(ConvertingFutureCallback.java:67)
+	at org.apache.kafka.connect.cli.ConnectStandalone.main(ConnectStandalone.java:97)
+Caused by: org.apache.kafka.connect.errors.ConnectException: Failed to find any class that implements Connector and which name matches cona.twitter.stream.connect.TwitterStreamRawConnector available connectors are: org.apache.kafka.connect.file.FileStreamSinkConnector, org.apache.kafka.connect.source.SourceConnector, org.apache.kafka.connect.sink.SinkConnector, org.apache.kafka.connect.file.FileStreamSourceConnector, org.apache.kafka.connect.tools.VerifiableSinkConnector, org.apache.kafka.connect.tools.VerifiableSourceConnector
+	at org.apache.kafka.connect.runtime.Worker.getConnectorClass(Worker.java:226)
+	at org.apache.kafka.connect.runtime.Worker.startConnector(Worker.java:166)
+	at org.apache.kafka.connect.runtime.standalone.StandaloneHerder.startConnector(StandaloneHerder.java:250)
+	at org.apache.kafka.connect.runtime.standalone.StandaloneHerder.putConnectorConfig(StandaloneHerder.java:164)
+	at org.apache.kafka.connect.cli.ConnectStandalone.main(ConnectStandalone.java:94)
+[2016-07-15 17:34:46,098] INFO Kafka Connect stopping (org.apache.kafka.connect.runtime.Connect:68)
+[2016-07-15 17:34:46,099] INFO Stopping REST server (org.apache.kafka.connect.runtime.rest.RestServer:154)
+[2016-07-15 17:34:46,101] INFO Stopped ServerConnector@5d1659ea{HTTP/1.1}{0.0.0.0:8083} (org.eclipse.jetty.server.ServerConnector:306)
+[2016-07-15 17:34:46,105] INFO Stopped o.e.j.s.ServletContextHandler@5733f295{/,null,UNAVAILABLE} (org.eclipse.jetty.server.handler.ContextHandler:865)
+[2016-07-15 17:34:46,106] INFO REST server stopped (org.apache.kafka.connect.runtime.rest.RestServer:165)
+[2016-07-15 17:34:46,107] INFO Herder stopping (org.apache.kafka.connect.runtime.standalone.StandaloneHerder:77)
+[2016-07-15 17:34:46,107] INFO Stopping connector coke-twitter-producer (org.apache.kafka.connect.runtime.Worker:278)
+[2016-07-15 17:34:46,107] ERROR Error shutting down connector coke-twitter-producer:  (org.apache.kafka.connect.runtime.standalone.StandaloneHerder:87)
+org.apache.kafka.connect.errors.ConnectException: Connector coke-twitter-producer not found in this worker.
+	at org.apache.kafka.connect.runtime.Worker.stopConnector(Worker.java:282)
+	at org.apache.kafka.connect.runtime.standalone.StandaloneHerder.stop(StandaloneHerder.java:85)
+	at org.apache.kafka.connect.runtime.Connect.stop(Connect.java:71)
+	at org.apache.kafka.connect.cli.ConnectStandalone.main(ConnectStandalone.java:101)
+[2016-07-15 17:34:46,107] INFO Worker stopping (org.apache.kafka.connect.runtime.Worker:128)
+[2016-07-15 17:34:46,107] WARN Shutting down tasks [] uncleanly; herder should have shut down tasks before the Worker is stopped. (org.apache.kafka.connect.runtime.Worker:141)
+[2016-07-15 17:34:46,107] INFO Stopped FileOffsetBackingStore (org.apache.kafka.connect.storage.FileOffsetBackingStore:68)
+[2016-07-15 17:34:46,108] INFO Worker stopped (org.apache.kafka.connect.runtime.Worker:151)
+[2016-07-15 17:34:46,108] INFO Herder stopped (org.apache.kafka.connect.runtime.standalone.StandaloneHerder:91)
+[2016-07-15 17:34:46,108] INFO Kafka Connect stopped (org.apache.kafka.connect.runtime.Connect:73)
