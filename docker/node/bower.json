@@ -1,0 +1,22 @@
+{
+  "name": "dashboard-server",
+  "description": "A basic real-time dashboard",
+  "main": "server.js",
+  "authors": [
+    "Michael Lin <mlin4589@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/simonbtomlinson/cona-hadoop-docker",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "d3": "^4.1.1"
+  }
+}
