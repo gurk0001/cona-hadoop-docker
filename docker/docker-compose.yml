@@ -11,7 +11,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "tweet:1:1"
+      KAFKA_CREATE_TOPICS: "button-event:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -32,11 +32,14 @@ services:
     ports:
       - "7077:7077"
       - "8080:8080"
+      - "4041:4041"
     depends_on:
       - kafka
       - hbase
     environment:
       ZOOKEEPER_QUORUM: zookeeper:2181
+      HBASE_ZOOKEEPER_QUORUM: zookeeper:2181
+      KAFKA_ZOOKEEPER_QUORUM: zookeeper:2181
       HBASE_URL: hbase:9090
   node:
     build: ./node
