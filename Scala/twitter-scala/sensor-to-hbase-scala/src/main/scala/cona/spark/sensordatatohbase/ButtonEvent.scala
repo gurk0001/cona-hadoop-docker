@@ -10,7 +10,9 @@ case class ButtonEvent(id: String, timestamp: Long, pressType: Int)
 
 object ButtonEvent extends Serializable {
   def parseButtonEvent(raw: String): ButtonEvent = {
+    System.out.println(raw);
     val s = raw.split(',')
+    // TODO: error handling for mal-formed packets (or maybe kafka should handle it?)
     ButtonEvent(s(0), s(1).toLong, s(2).toInt)
   }
 

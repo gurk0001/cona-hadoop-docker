@@ -32,12 +32,12 @@ public abstract class Producer extends Thread {
         if (isAsync) { // Send asynchronously
             producer.send(new ProducerRecord<>(topic,
                     clientID,
-                    message), new DemoCallBack(startTime, clientID, messageStr));
+                    messageStr), new DemoCallBack(startTime, clientID, messageStr));
         } else { // Send synchronously
             try {
                 producer.send(new ProducerRecord<>(topic,
                         clientID,
-                        message)).get();
+                        messageStr)).get();
                 System.out.println("Sent message: (" + clientID + ", " + messageStr + ")");
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
