@@ -84,3 +84,6 @@ bower_components
 
 ### jar files ##
 *.jar
+
+### volumes ###
+docker/volumes/

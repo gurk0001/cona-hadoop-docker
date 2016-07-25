@@ -9,7 +9,7 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.16.90
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "button-event:1:1"
     volumes:
@@ -27,6 +27,9 @@ services:
       - "60030:60030"
     environment:
       ZOOKEEPER_QUORUM: zookeeper:2181
+    volumes:
+      - ./volumes/hbase/data:/opt/hbase/data
+      - ./volumes/hbase/logs:/opt/hbase/logs
   spark:
     build: ./spark
     ports:
