@@ -15,16 +15,21 @@ app.listen(process.env.PORT, function () {
 });
 
 //Need to implement timing/wait until the client loads.
-/*
+
 // HBase
 var client = hbase({
   zookeeperHosts: [
-    process.env.ZOOKEEPER_HOSTNAME
+    "192.168.99.100"
   ]
 })
 
 client.on("error", function(error) {
   console.log("hbase client error " + error);
 });
-*/
 
+var scan = client.getScanner("button-events")
+scan.each (function (err, row) {
+    if (row) {
+        console.log(row.row.toString());
+    }
+});

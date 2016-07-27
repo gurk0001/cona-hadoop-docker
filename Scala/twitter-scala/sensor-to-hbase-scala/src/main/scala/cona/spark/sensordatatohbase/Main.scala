@@ -38,7 +38,7 @@ object Main extends App {
 
   val brokers = Util.envVariable("KAFKA_BROKER")
   val groupId = props.getProperty("kafka.group")
-  val topic = props.getProperty("kafka.topic")
+  val topic = Set("button-event")
 
   val sparkStreamingContext = new StreamingContext(sparkConf, Seconds(1))
   val kafkaParams = Map[String, String](
@@ -54,7 +54,7 @@ object Main extends App {
   val kafkaInputs = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
     sparkStreamingContext,
     kafkaParams,
-    Set(topic)
+    topic
   )
   val events = kafkaInputs.map(_._2).map(ButtonEvent.parseButtonEvent)
   events.foreachRDD{ rdd =>
