@@ -6,14 +6,14 @@ import org.apache.hadoop.hbase.client.Put
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable
 import org.apache.hadoop.hbase.util.Bytes
 
-case class ButtonEvent(id: String, timestamp: Long, pressType: Int)
+case class ButtonEvent(id: String, timestamp: Long, pressType: Float)
 
 object ButtonEvent extends Serializable {
   def parseButtonEvent(raw: String): ButtonEvent = {
     System.out.println(raw);
     val s = raw.split(',')
     // TODO: error handling for mal-formed packets (or maybe kafka should handle it?)
-    ButtonEvent(s(0), s(1).toLong, s(2).toInt)
+    ButtonEvent(s(0), s(1).toLong, s(2).toFloat)
   }
 
   def convertToPut(event: ButtonEvent, props: Properties): (ImmutableBytesWritable, Put) = {

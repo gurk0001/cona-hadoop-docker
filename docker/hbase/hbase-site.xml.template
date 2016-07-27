@@ -8,10 +8,6 @@
         <value>file://HBASE_ROOT_DIR</value>
     </property>
     <property>
-        <name>hbase.zookeeper.property.dataDir</name>
-        <value>file://HBASE_ZOOKEEPER_DATA_DIR</value>
-    </property>
-    <property>
         <name>hbase.zookeeper.quorum</name>
         <value>ZOOKEEPER_QUORUM</value>
     </property>
