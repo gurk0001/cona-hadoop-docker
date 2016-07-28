@@ -2,11 +2,12 @@ var express = require('express');
 var app = express();
 var hbase = require('hbase-rpc-client');
 var bodyParser = require('body-parser')
+var path = require('path');
 app.use(bodyParser.json())
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use('/public', express.static(path.join(__dirname, '/public')));
 //Bower dependencies
-app.use(express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -15,19 +16,20 @@ app.get('/', function(req, res) {
 app.post('/data', function(req, res) {
     console.log(req.body.sensor);
     var sensor = req.body.sensor;
-    var timestamp = req.body.timestamp;
+    var starttime = req.body.starttime;
+    var endtime = req.body.endtime;
     res.setHeader('Content-Type', 'application/json');
     var returnArray = [];
     this.addElement = function(err, row) {
         if (row) {
-            returnArray.push([row.row.toString('utf8').split('_')[1], row.columns[0].value.toString('utf8')]);
+            returnArray.push([parseInt(row.row.toString('utf8').split('_')[1]), row.columns[0].value.readFloatBE()]);
         }
     }
     this.finish = function() {
-       res.json( {"data": returnArray});
+       res.json( {"rows": returnArray});
        scan.close();
     }
-    var scan = client.getScanner("button-events", sensor + "_" + timestamp);
+    var scan = client.getScanner("button-events", sensor + "_" + starttime, sensor + "_" + endtime);
     scan.each (this.addElement, this.finish);
 });
 
@@ -47,8 +49,3 @@ var client = hbase({
 client.on("error", function(error) {
   console.log("hbase client error " + error);
 });
-
-
-//get = new hbase.Get("button-sensor-1_1469644700893");
-
-//client.get("button-events", get, addElement);
