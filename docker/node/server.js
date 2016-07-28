@@ -33,8 +33,8 @@ app.post('/data', function(req, res) {
     scan.each (this.addElement, this.finish);
 });
 
-app.listen(process.env.PORT || 3001, function () {
-  console.log('App running on ' + (process.env.PORT || 3001) + "!");
+app.listen(process.env.PORT || 3000, function () {
+  console.log('App running on ' + (process.env.PORT || 3000) + "!");
 });
 
 //Need to implement timing/wait until the client loads.
@@ -42,7 +42,7 @@ app.listen(process.env.PORT || 3001, function () {
 // HBase
 var client = hbase({
   zookeeperHosts: [
-    "192.168.99.100"
+    process.env.ZOOKEEPER_HOSTNAME
   ]
 })
 

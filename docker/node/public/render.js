@@ -1,5 +1,7 @@
-var starttime = 146964470089
-var endtime = 1469654599629
+//var starttime = 146964470089
+var starttime = Date.now() - 1000;
+var endtime = Date.now();
+var purgeArray = [];
 var chart = c3.generate({
     data: {
         x: 'time',
@@ -29,11 +31,11 @@ var getData = function() {
             dataType: "json",
             success: function(data){
                 console.log(data.rows);
-                starttime = endtime;
-                endtime+=1000;
+                endtime = Date.now();
                 if (data.rows.length == 0) {
                     return;
                 }
+                starttime = Date.now() - 1000;
                 data.rows.unshift(["time", "value"])
                 chart.flow( {
                    rows: data.rows
