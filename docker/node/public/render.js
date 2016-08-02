@@ -1,5 +1,5 @@
 //var starttime = 146964470089
-var starttime = Date.now() - 1000;
+var starttime = Date.now() - 5000;
 var endtime = Date.now();
 var purgeArray = [];
 var chart = c3.generate({
@@ -35,10 +35,11 @@ var getData = function() {
                 if (data.rows.length == 0) {
                     return;
                 }
-                starttime = Date.now() - 1000;
+                starttime = Date.now() - 5000;
                 data.rows.unshift(["time", "value"])
-                chart.flow( {
-                   rows: data.rows
+                chart.load({
+                    rows: data.rows,
+                    unload: chart.rows,
                 });
             },
             failure: function(errMsg) {
@@ -46,7 +47,7 @@ var getData = function() {
             }
         });
         getData();
-    }, 1000);
+    }, 5000);
 }
 getData();
 

@@ -37,6 +37,7 @@ services:
       - "7077:7077"
       - "8080:8080"
       - "4041:4041"
+      - "8787:8787"
     depends_on:
       - kafka
       - hbase
@@ -46,6 +47,9 @@ services:
       KAFKA_BROKER: kafka:9092
       KAFKA_ZOOKEEPER_QUORUM: zookeeper:2181
       HBASE_URL: hbase:9090
+    volumes:
+      - ./spark/data:/data/csv
+      - ./spark/R:/data/R
   node:
     build: ./node
     ports:
