@@ -89,5 +89,6 @@ bower_components
 docker/volumes/
 
 ### Raw Spark Files ###
-spark/data
-spark/R
+docker/spark/data/
+docker/spark/R/
+docker/spark/python/

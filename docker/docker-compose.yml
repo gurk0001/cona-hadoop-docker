@@ -36,7 +36,7 @@ services:
     ports:
       - "7077:7077"
       - "8080:8080"
-      - "4041:4041"
+      - "4040:4040"
       - "8787:8787"
     depends_on:
       - kafka
@@ -50,6 +50,8 @@ services:
     volumes:
       - ./spark/data:/data/csv
       - ./spark/R:/data/R
+      - ./spark/python:/data/python
+      - ./volumes/spark:/opt/spark/logs
   node:
     build: ./node
     ports:
