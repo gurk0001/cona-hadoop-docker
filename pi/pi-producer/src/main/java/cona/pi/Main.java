@@ -16,14 +16,15 @@ public class Main {
                 props.getProperty("rangefinderSensorID"),
                 true,
                 props.getProperty("USBdevice"));
-
+        /*
         Button button = new Button(
                 props.getProperty("button-topic"),
                 props.getProperty("ip"),
                 props.getProperty("buttonSensorID"),
                 true);
+         */
         ping.start();
-        button.start();
+        //button.start();
 
     }
 

@@ -10,7 +10,7 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.post('/data', function(req, res) {

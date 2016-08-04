@@ -11,7 +11,7 @@ void setup() {
 }
 
 void loop() {
-  delay(50);
+  delay(100);
   int uS = sonar.ping();
-  Serial.println(uS / US_ROUNDTRIP_CM);
+  Serial.println(max(1,uS / US_ROUNDTRIP_CM));
 }

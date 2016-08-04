@@ -1,0 +1,39 @@
+<!-- Load c3.css -->
+<link href="/bower_components/c3/c3.css" rel="stylesheet" type="text/css">
+<style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .graph .axis {
+            stroke-width: 1;
+        }
+
+        .graph .axis .tick line {
+            stroke: black;
+        }
+
+        .graph .axis .tick text {
+            fill: black;
+            font-size: 0.7em;
+        }
+
+        .graph .axis .domain {
+            fill: none;
+            stroke: black;
+        }
+
+        .graph .group {
+            fill: none;
+            stroke: black;
+            stroke-width: 1.5;
+        }
+</style>
+<!-- Load d3.js and c3.js -->
+<script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
+<script src="/bower_components/c3/c3.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<div id="chart"></div>
+<div class="graph"></div>
+
+<script src="/public/render.js"></script>
