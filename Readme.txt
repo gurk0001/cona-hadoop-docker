@@ -1,4 +1,4 @@
-The Arduino code ofr the Pi Producer assumes connection to the interrupt pin of an arduino (pin 3) of an Arduino Uno.
+The Arduino code for the Pi Producer assumes connection to the interrupt pin of an arduino (pin 3) of an Arduino Uno.
 
 It also requires the NewPing library, which has been included as a zip file.
 
