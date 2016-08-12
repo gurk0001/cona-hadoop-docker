@@ -1,5 +1,7 @@
 package cona.spark.sensordatatohbase
 
+import kafka.serializer.StringDecoder
+import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.hadoop.hbase.client.{ConnectionFactory, Mutation}
 import org.apache.hadoop.hbase.mapred.TableOutputFormat
 import org.apache.hadoop.hbase.{HBaseConfiguration, HColumnDescriptor, HTableDescriptor, TableName}
@@ -31,20 +33,30 @@ object Main extends App {
 
   val sparkConf = new SparkConf().setAppName("SensorToHbase")
   sparkConf.set("spark.hbase.host", Util.envVariable("HBASE_ZOOKEEPER_QUORUM"))
+
   val jobConf = new JobConf(hbaseConf, this.getClass)
 
+  val brokers = Util.envVariable("KAFKA_BROKER")
+  val groupId = props.getProperty("kafka.group")
+  val topic = Set("button-event")
 
   val sparkStreamingContext = new StreamingContext(sparkConf, Seconds(1))
-  sparkStreamingContext.checkpoint("checkpoint")
+  val kafkaParams = Map[String, String](
+    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> brokers,
+    ConsumerConfig.GROUP_ID_CONFIG -> groupId,
+    ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG ->
+      "org.apache.kafka.common.serialization.StringDeserializer",
+    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG ->
+      "org.apache.kafka.common.serialization.StringDeserializer",
+    ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG -> "false"
+  )
 
-  val kafkaInputs = KafkaUtils.createStream(
+  val kafkaInputs = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
     sparkStreamingContext,
-    Util.envVariable("KAFKA_ZOOKEEPER_QUORUM"),
-    props.getProperty("kafka.group"),
-    Map(props.getProperty("kafka.topic") -> 1)
-  ).map(_._2) // map to the second entry in the tuple (first is the topic name)
-
-  val events = kafkaInputs.map(ButtonEvent.parseButtonEvent)
+    kafkaParams,
+    topic
+  )
+  val events = kafkaInputs.map(_._2).map(ButtonEvent.parseButtonEvent)
   events.foreachRDD{ rdd =>
     rdd.map(buttonEvent =>
       (s"${buttonEvent.id}_${buttonEvent.timestamp}", buttonEvent.pressType)

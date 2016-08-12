@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/intellij,maven
 
 ### Intellij ###
@@ -66,6 +65,15 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+.idea/
+Kotlin/KafkaToHBase/src/main/java/
+Kotlin/KafkaToHBase/src/main/resources/
+Kotlin/KafkaToHBase/src/test/
+Kotlin/twitter/kafka-producer/src/main/resources/
+Kotlin/twitter/kafka-producer/src/test/
+Kotlin/twitter/twitter-common/src/main/resources/
+Kotlin/twitter/twitter-common/src/test/
+docker/ubuntu-java/
 
 ### Node ###
 node_modules
@@ -76,3 +84,11 @@ bower_components
 
 ### jar files ##
 *.jar
+
+### volumes ###
+docker/volumes/
+
+### Raw Spark Files ###
+docker/spark/data/
+docker/spark/R/
+docker/spark/python/

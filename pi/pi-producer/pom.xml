@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>pi</artifactId>
+        <groupId>cona</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>pi-producer</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- DEFAULT RASPBERRY PI PROPERTIES -->
+        <pi.host>192.168.16.45</pi.host>
+        <pi.port>22</pi.port>
+        <pi.user>pi</pi.user>
+        <pi.password>raspberry</pi.password>
+        <pi.deployDirectory>/home/pi/Documents/producer-test</pi.deployDirectory>
+        <pi.main.class>cona.pi.pi-producer.main</pi.main.class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.10.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-core</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-gpio-extension</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>oss-snapshots-repo</id>
+            <name>Sonatype OSS Maven Repository</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!-- ensure the target directory exists on the Raspberry Pi -->
+                                <sshexec host="${pi.host}" port="${pi.port}" username="${pi.user}" password="${pi.password}"
+                                         trust="true" failonerror="false" verbose="true"
+                                         command="mkdir --parents ${pi.deployDirectory}"/>
+
+                                <!-- copy the JAR file to the Raspberry Pi -->
+                                <scp
+                                        file="${project.build.directory}/${project.build.finalName}.jar"
+                                        todir="${pi.user}:${pi.password}@${pi.host}:${pi.deployDirectory}"
+                                        port="${pi.port}" trust="true" verbose="true" failonerror="true">
+                                </scp>
+
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-jsch</artifactId>
+                        <version>1.9.6</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

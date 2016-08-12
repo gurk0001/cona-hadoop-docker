@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/json" -d "{\"sensor\": \"button-sensor-1\", \"timestamp\": \"146964470089\"}" 192.168.99.100:3000/data
